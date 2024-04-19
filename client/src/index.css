@@ -77,8 +77,11 @@ table {
     margin-top: 30px;
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ddd;
+  border: none;
   }
+tr{
+  border: none !important;
+}
 
   th{
     background:#deeafa !important ; 
@@ -283,8 +286,8 @@ table {
 #sideBar {
   position: fixed;
   top: 0;
-  right: -300px;
-  width: 300px;
+  right: -350px;
+  width: 350px;
   height: 100%;
   background-color: #f0f0f0;
   transition: right 0.3s ease-in-out;

@@ -119,7 +119,7 @@ const Try = () => {
 
     return (
       <div style={{marginLeft:"40px"}}>
-         <table >
+         <table style={{marginTop:"-10px"}}>
             <tr>
             <td width={"490px"}>
               <input type="checkbox" checked={isChecked} onChange={handleSelect} style={{height:"20px",width:"20px",marginRight:"20px"}} />
@@ -146,13 +146,13 @@ const Try = () => {
 
     return (
       <div style={{marginLeft:"20px"}}>
-         <table >
+         <table style={{marginTop:"-10px"}}>
             <tr>
-            <td width={"530px"}>
+            <td width={"525px"}>
             <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.2);"}} />
             <span>{activity.name}</span>
             </td>
-            <td width={"513px"}>
+            <td width={"516px"}>
               {activity.rate}
             </td>
             <td>
@@ -194,16 +194,16 @@ const Try = () => {
 
     return (
       <div>
-          <table >
-            <tr>
-              <td width={"570px"}>
+          <table style={{marginTop:"-10px"}}>
+            <tr >
+              <td width={"565px"}>
                 <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.7),"}} 
                  checked={isSelected || packageSelection[pkg.name]}
                  onChange={toggleLocalPackageSelect}
                 />
                 <span>{pkg.name}</span>
               </td>
-              <td width={"513px"}>
+              <td width={"517px"}>
                 
                   {pkg.rate}
                
@@ -239,11 +239,11 @@ const Try = () => {
   // Main App Component
   const App = ({data}) => (
     
-
+    
 
     <div>
      
-        <table >
+        <table style={{marginBottom:"10px"}}>
         <tr>
         <th style={{display:'flex'}}>
           <input type="checkbox" style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.2);"}}
