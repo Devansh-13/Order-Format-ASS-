@@ -150,7 +150,7 @@ const Try = () => {
             <tr>
             <td width={"530px"}>
             <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.2);"}} />
-            <strong>{activity.name}</strong>
+            <span>{activity.name}</span>
             </td>
             <td width={"513px"}>
               {activity.rate}
@@ -159,7 +159,7 @@ const Try = () => {
               {activity.total}
             </td>
             <td style={{textAlign:'right'}}>
-          <button onClick={() => setIsExpanded(!isExpanded)}>
+          <button style={{border:"none"}} onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? '▲' : '▼'}
           </button>
           </td>
@@ -197,11 +197,11 @@ const Try = () => {
           <table >
             <tr>
               <td width={"570px"}>
-                <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.7);"}} 
+                <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.7),"}} 
                  checked={isSelected || packageSelection[pkg.name]}
                  onChange={toggleLocalPackageSelect}
                 />
-                <strong>{pkg.name}</strong>
+                <span>{pkg.name}</span>
               </td>
               <td width={"513px"}>
                 

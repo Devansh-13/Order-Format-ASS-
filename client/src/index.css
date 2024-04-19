@@ -81,7 +81,7 @@ table {
   }
 
   th{
-    background: #b4e9e9 !important ; 
+    background:#deeafa !important ; 
   }
   
   th,
@@ -98,6 +98,9 @@ table {
   .table__total{
     display: flex;
     justify-content:space-between;
+  }
+  td{
+    font-weight: 100 !important;
   }
 
 
@@ -161,7 +164,7 @@ table {
    }
 
    .pack-title{
-    background-color:cadetblue;
+    background-color:#b4e9e9;
       font-size:1.1rem ;
       display: flex;
       justify-content: space-around;
