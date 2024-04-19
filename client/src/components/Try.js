@@ -83,6 +83,60 @@ const Try = () => {
             ]
           },
         ]
+      },
+      {
+        "name": "Civil 4",
+        "rate": "100",
+        "total": "₹50,000",
+        "activities": [
+          {
+            "name": "Activity 1",
+            "rate": "200",
+            "total": "₹20,000",
+            "workItems": [
+              {"name": "Work Item 1", "total": "₹5,000"},
+              {"name": "Work Item 2", "total": "₹7,000"},
+              {"name": "Work Item 3", "total": "₹8,000"}
+            ]
+          },
+          {
+            "name": "Activity 2",
+            "rate": "150",
+            "total": "₹15,000",
+            "workItems": [
+              {"name": "Work Item 4", "total": "₹3,000"},
+              {"name": "Work Item 5", "total": "₹5,000"},
+              {"name": "Work Item 6", "total": "₹7,000"}
+            ]
+          },
+        ]
+      },
+      {
+        "name": "Civil 5",
+        "rate": "100",
+        "total": "₹50,000",
+        "activities": [
+          {
+            "name": "Activity 1",
+            "rate": "200",
+            "total": "₹20,000",
+            "workItems": [
+              {"name": "Work Item 1", "total": "₹5,000"},
+              {"name": "Work Item 2", "total": "₹7,000"},
+              {"name": "Work Item 3", "total": "₹8,000"}
+            ]
+          },
+          {
+            "name": "Activity 2",
+            "rate": "150",
+            "total": "₹15,000",
+            "workItems": [
+              {"name": "Work Item 4", "total": "₹3,000"},
+              {"name": "Work Item 5", "total": "₹5,000"},
+              {"name": "Work Item 6", "total": "₹7,000"}
+            ]
+          },
+        ]
       }
     ]
   };
@@ -196,11 +250,13 @@ const Try = () => {
       <div>
           <table style={{marginTop:"-10px"}}>
             <tr >
-              <td width={"565px"}>
+              <td width={"565px"} >
+               
                 <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.7),"}} 
                  checked={isSelected || packageSelection[pkg.name]}
                  onChange={toggleLocalPackageSelect}
                 />
+               
                 <span>{pkg.name}</span>
               </td>
               <td width={"517px"}>
@@ -246,10 +302,12 @@ const Try = () => {
         <table style={{marginBottom:"10px"}}>
         <tr>
         <th style={{display:'flex'}}>
+          
           <input type="checkbox" style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.2);"}}
           checked={isAllPackagesSelected}
           onChange={toggleAllPackagesSelect}
           />
+        
           <strong>Packages</strong>
         </th>
         <th>
