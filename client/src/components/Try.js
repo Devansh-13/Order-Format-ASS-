@@ -23,9 +23,9 @@ const Try = () => {
             "rate": "150",
             "total": "₹15,000",
             "workItems": [
-              {"name": "Work Item 1", "total": "₹3,000"},
-              {"name": "Work Item 2", "total": "₹5,000"},
-              {"name": "Work Item 3", "total": "₹7,000"}
+              {"name": "Work Item 4", "total": "₹3,000"},
+              {"name": "Work Item 5", "total": "₹5,000"},
+              {"name": "Work Item 6", "total": "₹7,000"}
             ]
           },
         ]
@@ -50,9 +50,9 @@ const Try = () => {
             "rate": "150",
             "total": "₹15,000",
             "workItems": [
-              {"name": "Work Item 1", "total": "₹3,000"},
-              {"name": "Work Item 2", "total": "₹5,000"},
-              {"name": "Work Item 3", "total": "₹7,000"}
+              {"name": "Work Item 4", "total": "₹3,000"},
+              {"name": "Work Item 5", "total": "₹5,000"},
+              {"name": "Work Item 6", "total": "₹7,000"}
             ]
           },
         ]
@@ -77,36 +77,9 @@ const Try = () => {
             "rate": "150",
             "total": "₹15,000",
             "workItems": [
-              {"name": "Work Item 1", "total": "₹3,000"},
-              {"name": "Work Item 2", "total": "₹5,000"},
-              {"name": "Work Item 3", "total": "₹7,000"}
-            ]
-          },
-        ]
-      },
-      {
-        "name": "Civil 4",
-        "rate": "100",
-        "total": "₹50,000",
-        "activities": [
-          {
-            "name": "Activity 1",
-            "rate": "200",
-            "total": "₹20,000",
-            "workItems": [
-              {"name": "Work Item 1", "total": "₹5,000"},
-              {"name": "Work Item 2", "total": "₹7,000"},
-              {"name": "Work Item 3", "total": "₹8,000"}
-            ]
-          },
-          {
-            "name": "Activity 2",
-            "rate": "150",
-            "total": "₹15,000",
-            "workItems": [
-              {"name": "Work Item 1", "total": "₹3,000"},
-              {"name": "Work Item 2", "total": "₹5,000"},
-              {"name": "Work Item 3", "total": "₹7,000"}
+              {"name": "Work Item 4", "total": "₹3,000"},
+              {"name": "Work Item 5", "total": "₹5,000"},
+              {"name": "Work Item 6", "total": "₹7,000"}
             ]
           },
         ]
@@ -114,8 +87,28 @@ const Try = () => {
     ]
   };
 
+  
+  const [isAllPackagesSelected, setIsAllPackagesSelected] = useState(false);
+  const [packageSelection, setPackageSelection] = useState({});
+
+  const toggleAllPackagesSelect = () => {
+    setIsAllPackagesSelected(!isAllPackagesSelected);
+    const updatedSelection = {};
+    for (const pkg of data.Packages) {
+      updatedSelection[pkg.name] = !isAllPackagesSelected;
+    }
+    setPackageSelection(updatedSelection);
+  };
+
+  const togglePackageSelect = (packageName) => {
+    setPackageSelection((prevSelection) => ({
+      ...prevSelection,
+      [packageName]: !prevSelection[packageName]
+    }));
+  };
+
   // Work Item Component
-  const WorkItem = ({ item ,isSelected, onSelect}) => {
+  const WorkItem = ({ item, isSelected, onSelect }) => {
     const [isChecked, setIsChecked] = useState(isSelected);
 
     const handleSelect = () => {
@@ -125,76 +118,74 @@ const Try = () => {
     };
 
     return (
-      <div className='package-main'>
-        <div className='pack-title2'>
-          <div>
-        <input type="checkbox" checked={isChecked} onChange={handleSelect}  />
-        <span>{item.name}</span>
-        </div>
-        
-        <span style={{ marginLeft: '20px' }}>{item.total}</span>
-        </div>
+      <div style={{marginLeft:"40px"}}>
+         <table >
+            <tr>
+            <td width={"490px"}>
+              <input type="checkbox" checked={isChecked} onChange={handleSelect} style={{height:"20px",width:"20px",marginRight:"20px"}} />
+              <span>{item.name}</span>
+            </td>
+            <td width={"513px"}>
+              
+               
+            </td>
+            <td>
+              {item.total}
+            </td>
+            </tr>
+        </table>
       </div>
     );
   };
 
   // Activity Component
-  const Activity = ({ activity ,isSelected,onSelect}) => {
+  const Activity = ({ activity}) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const [activitySelection, setActivitySelection] = useState(
-      activity.workItems.map(() => isSelected)
-    );
 
-    const handleWorkItemSelect = (index, isChecked) => {
-      const newActivitySelection = [...activitySelection];
-      newActivitySelection[index] = isChecked;
-      setActivitySelection(newActivitySelection);
-      onSelect(newActivitySelection.every((item) => item));
-    };
 
     return (
-      <div className='package-main'>
-        <div className='pack-title1' style={{ display: 'flex', alignItems: 'center' }}>
-          <div  className="input" style={{ paddingLeft: '70px' }}>
-            <input type="checkbox" style={{marginRight:"20px"}} checked={isSelected} onChange={onSelect} />
-          <strong>{activity.name}</strong>
-          </div>
-          <span style={{ marginLeft: '20px' }}>{activity.rate}</span>
-          <span style={{ marginLeft: '20px' }}>{activity.total}</span>
+      <div style={{marginLeft:"20px"}}>
+         <table >
+            <tr>
+            <td width={"530px"}>
+            <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.2);"}} />
+            <strong>{activity.name}</strong>
+            </td>
+            <td width={"513px"}>
+              {activity.rate}
+            </td>
+            <td>
+              {activity.total}
+            </td>
+            <td style={{textAlign:'right'}}>
           <button onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? '▲' : '▼'}
           </button>
-        </div>
-        {isExpanded && activity.workItems.map((item, index) => <WorkItem key={index} item={item}  isSelected={activitySelection[index]}
-              onSelect={(isChecked) => handleWorkItemSelect(index, isChecked)} />)}
+          </td>
+          </tr>
+          </table>
+        {isExpanded &&
+          activity.workItems.map((item, index) => (
+            <WorkItem
+              key={index}
+              item={item}
+            />
+          ))}
       </div>
     );
   };
 
   // Package Component
   const Package = ({ pkg }) => {
-    const [isSelected, setIsSelected] = useState(false);
+    
     const [isExpanded, setIsExpanded] = useState(false);
-    const [activitySelection, setActivitySelection] = useState({});
+    
+    const [isSelected, setIsSelected] = useState(false);
 
-    const handleSelect = () => {
-      const newSelected = !isSelected;
-      setIsSelected(newSelected);
-
-      // Select all activities
-      const newActivitySelection = {};
-      pkg.activities.forEach((_, index) => {
-        newActivitySelection[index] = newSelected;
-      });
-      setActivitySelection(newActivitySelection);
-    };
-
-    const handleActivitySelect = (index) => {
-      const newActivitySelection = { ...activitySelection };
-      newActivitySelection[index] = !newActivitySelection[index];
-      setActivitySelection(newActivitySelection);
-      setIsSelected(Object.values(newActivitySelection).every((value) => value));
+    const toggleLocalPackageSelect = () => {
+      setIsSelected(!isSelected);
+      togglePackageSelect(pkg.name);
     };
 
     const toggleExpand = () => {
@@ -202,52 +193,86 @@ const Try = () => {
     };
 
     return (
-      <div className='package-main'>
-        <div  className="pack-title1" style={{ display: 'flex', alignItems: 'center' }}>
-          <div className='input'>
-            <input type="checkbox" checked={isSelected} onChange={handleSelect} />
-            <strong>{pkg.name}</strong>
+      <div>
+          <table >
+            <tr>
+              <td width={"570px"}>
+                <input type="checkbox"  style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.7);"}} 
+                 checked={isSelected || packageSelection[pkg.name]}
+                 onChange={toggleLocalPackageSelect}
+                />
+                <strong>{pkg.name}</strong>
+              </td>
+              <td width={"513px"}>
+                
+                  {pkg.rate}
+               
+              </td>
+              <td>
+             
+                  {pkg.total}
+               
+              </td>
+              <td style={{textAlign:'right'}}>
+              <button onClick={toggleExpand} style={{border:"none"}}>
+                {isExpanded ?  <img className="plus"src='https://th.bing.com/th/id/R.502a9c48f0a6837a8079d504b1ada00c?rik=etRbFieFmtrSHA&riu=http%3a%2f%2fwiki.openstreetmap.org%2fw%2fimages%2fthumb%2f9%2f90%2fSymbol_Green_Minus.svg%2f1024px-Symbol_Green_Minus.svg.png&ehk=Nm%2fRfuAs4q77drL6eJnTrmr8Q9kL966rqqAxVGHECz0%3d&risl=&pid=ImgRaw&r=0'/>: <img className="plus"src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/17-512.png" alt="" /> }
+              </button>
+              </td>
+            </tr>
+          </table>
+        {isExpanded && (
+          <div style={{ paddingLeft: '20px' }}>
+            {pkg.activities.map((activity, index) => (
+              <div key={index}>
+                <Activity activity={
+                  activity
+                }
+                />
+              </div>
+            ))}
           </div>
-          
-          <div>
-             {pkg.rate}
-          </div>
-          <div >
-             {pkg.total}
-          </div>
-          <button  className="add-btn" onClick={toggleExpand}>
-            {isExpanded ? <img className="plus"src='https://th.bing.com/th/id/R.502a9c48f0a6837a8079d504b1ada00c?rik=etRbFieFmtrSHA&riu=http%3a%2f%2fwiki.openstreetmap.org%2fw%2fimages%2fthumb%2f9%2f90%2fSymbol_Green_Minus.svg%2f1024px-Symbol_Green_Minus.svg.png&ehk=Nm%2fRfuAs4q77drL6eJnTrmr8Q9kL966rqqAxVGHECz0%3d&risl=&pid=ImgRaw&r=0'/>: <img className="plus"src="https://cdn1.iconfinder.com/data/icons/basic-ui-elements-coloricon/21/17-512.png" alt="" /> }
-          </button>
-        </div>
-        {/* '▼' */}
-        {isExpanded &&
-          pkg.activities.map((activity, index) => (
-            <div key={index} style={{ paddingLeft: '20px' }}>
-              <Activity activity={activity} isSelected={activitySelection[index]}
-                  onSelect={() => handleActivitySelect(index)} />
-            </div>
-          ))}
-          
+        )}
       </div>
     );
   };
 
   // Main App Component
-  const App = ({ data }) => (
-    <div className='package-main'>
-    <div className="pack-title"  style={{ paddingRight: '10px' }}>
-          <div>
-            <input type="checkbox" />
-            <strong>Packages</strong>
-            </div>
-    <strong className='rate'>Rates<span>(in sqft)</span></strong>
-    <strong className='total'>Total</strong>
-    </div>
+  const App = ({data}) => (
     
-    {data.Packages.map((pkg, index) => (
-      <Package key={index} pkg={pkg} />
-    ))}
-  </div>
+
+
+    <div>
+     
+        <table >
+        <tr>
+        <th style={{display:'flex'}}>
+          <input type="checkbox" style={{height:"20px",width:"20px",marginRight:"20px",boxShadow:" 0 0 5px 2px rgba(0, 0, 0, 0.2);"}}
+          checked={isAllPackagesSelected}
+          onChange={toggleAllPackagesSelect}
+          />
+          <strong>Packages</strong>
+        </th>
+        <th>
+          <strong>Rates</strong><span>(in sqft)</span>
+        </th>
+        <th>
+          <strong>Total</strong>
+        </th>
+        <th>
+          <button >
+              
+          </button>
+        </th>
+
+        </tr>
+        </table>
+      
+      {data.Packages.map((pkg, index) => (
+        <Package key={index} pkg={pkg} 
+      
+        />
+      ))}
+    </div>
   );
 
   return <App data={data} />;

@@ -27,9 +27,9 @@ const data = [
 
             { category==="Overview"? 
             <div className="main-container">
-                <Try/>
+                <Try data={data}/>
             </div>
-            : <h3>Hello World</h3>
+            : <h3 style={{margin:"40px 100px"}}>Hello World</h3>
             }
 
         </div>

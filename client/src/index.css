@@ -33,13 +33,14 @@ html{
 }
 
 .header-btn{
+  cursor: pointer;
     font-size: 1rem;
     background-color: #60d0d1;
     color: white;
     padding: 10px 50px;
     border-radius: 6px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 3px 10px #60d0d1;;
+    /* box-shadow: 0 3px 10px #60d0d1;; */
 }
 
 
@@ -160,7 +161,7 @@ table {
    }
 
    .pack-title{
-    background-color:#dee9fa;
+    background-color:cadetblue;
       font-size:1.1rem ;
       display: flex;
       justify-content: space-around;
@@ -176,7 +177,7 @@ table {
             height: 20px;
             width: 20px;
             box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);;
-            accent-color:#60d0d1 ;
+            
         }
         strong{
           margin-left: -100px;
@@ -215,13 +216,13 @@ table {
     
  }
 
- .add-btn{
-  border: none;
- }
+
  .plus{
       height: 20px;
       width:20px;
-      border-radius: 0px;
+     border: none;
+     outline: none;
+     border-radius: 0px;
       cursor: pointer;
  }
 
@@ -262,3 +263,80 @@ table {
 }
 
 
+
+/* Form */
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 9998; /* Below the sidebar */
+}
+
+#sideBar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #f0f0f0;
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  z-index: 9999;
+}
+
+#myForm {
+  display: none;
+  margin-top: 50px;
+}
+
+#toggleForm {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+#sideBar.show {
+  right: 0;
+}
+
+#sideBar.show #myForm {
+  display: block;
+}
+
+#myForm {
+  text-align: left;
+}
+
+#myForm label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#myForm input[type="text"],#myForm select[type="text"],
+#myForm input[type="date"] {
+  width: calc(100% - 20px); /* Subtract padding */
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#myForm button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#myForm button[type="submit"]:hover {
+  background-color: #45a049;
+}
